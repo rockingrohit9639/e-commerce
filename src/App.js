@@ -5,14 +5,15 @@
 // import Newsletter from "./Components/Newsletter";
 // import Products from "./Components/Products";
 // import Slider from "./Components/Slider";
-import Product from "./Pages/Product";
+// import Product from "./Pages/Product";
+import Register from "./Pages/Register";
 // import ProductList from "./Pages/ProductList";
 // import Home from "./Pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <Product />
+      <Register />
     </div>
   );
 }
