@@ -74,7 +74,7 @@ function Navbar() {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>R-Shop</Logo>
+          <Logo>R-SHOP</Logo>
         </Center>
         <Right>
           <MenuItem>register</MenuItem>
