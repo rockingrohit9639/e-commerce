@@ -1,7 +1,7 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/XsdmR2c/1.png",
+    img: "https://freepngimg.com/thumb/model/4-2-model-free-png-image.png",
     title: "SUMMER SALE",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "f5fafd",
@@ -47,7 +47,7 @@ export const popularProducts = [
   },
   {
     id: 2,
-    img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+    img: "https://pngimg.com/uploads/watches/watches_PNG9858.png",
   },
   {
     id: 3,
@@ -67,7 +67,7 @@ export const popularProducts = [
   },
   {
     id: 7,
-    img: "https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+    img: "http://assets.stickpng.com/images/585680404f6ae202fedf26f0.png",
   },
   {
     id: 8,
