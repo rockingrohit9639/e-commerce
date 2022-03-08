@@ -9,10 +9,7 @@ const PORT = process.env.PORT || 8001;
 require("./db/connection")
 
 // Routes
-app.use(require("./Routes/user"))
-app.get("/", (req, res) => {
-    return res.json({ message: "OK"})
-})
+app.use("/api/user", require("./Routes/user"))
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT: ${PORT}`)
