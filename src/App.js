@@ -5,13 +5,14 @@
 // import Newsletter from "./Components/Newsletter";
 // import Products from "./Components/Products";
 // import Slider from "./Components/Slider";
-import ProductList from "./Pages/ProductList";
+import Product from "./Pages/Product";
+// import ProductList from "./Pages/ProductList";
 // import Home from "./Pages/Home";
 
 function App() {
   return (
     <div className="App">
-      <ProductList />
+      <Product />
     </div>
   );
 }
