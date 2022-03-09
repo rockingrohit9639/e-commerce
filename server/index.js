@@ -13,9 +13,11 @@ const PORT = process.env.PORT || 8001;
 require("./db/connection")
 
 // Routes
-app.use("/api/user", require("./Routes/user"));
 app.use("/api/auth", require("./Routes/auth"));
+app.use("/api/cart", require("./Routes/cart"));
+app.use("/api/order", require("./Routes/order"));
 app.use("/api/products", require("./Routes/product"));
+app.use("/api/user", require("./Routes/user"));
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT: ${PORT}`)
