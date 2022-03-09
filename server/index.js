@@ -15,6 +15,7 @@ require("./db/connection")
 // Routes
 app.use("/api/user", require("./Routes/user"));
 app.use("/api/auth", require("./Routes/auth"));
+app.use("/api/products", require("./Routes/product"));
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT: ${PORT}`)
