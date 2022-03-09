@@ -21,7 +21,7 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
 });
 
 // UPDATE PRODUCT
-router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -38,15 +38,15 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 });
 
-// // DELETE
-// router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
-//   try {
-//     await User.findByIdAndDelete(req.params.id);
-//     res.status(200).json({ message: "User has been deleted!" });
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+// DELETE PRODUCT
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Product has been deleted!" });
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // // GET USER
 // router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
