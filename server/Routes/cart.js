@@ -1,5 +1,9 @@
 const Cart = require("../Models/Cart");
-const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
+const {
+  verifyTokenAndAdmin,
+  verifyToken,
+  verifyTokenAndAuthorization,
+} = require("./verifyToken");
 
 const router = require("express").Router();
 
@@ -44,39 +48,21 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
 });
 
 // GET User Cart
-router.get("/find/:userid", verifyTokenAndAuthorization,async (req, res) => {
+router.get("/find/:userid", verifyTokenAndAuthorization, async (req, res) => {
   try {
-    
     const cart = await Cart.findOne({ userid: req.params.userid });
     res.status(200).json(cart);
-    
   } catch (err) {
     return res.status(500).json(err);
   }
 });
 
-// // GET ALL CartS
-// router.get("/", async (req, res) => {
-//   const qNew = req.query.new;
-//   const qCategory = req.query.category;
-
-//   try {
-//     let Carts;
-
-//     if (qNew) {
-//       Carts = await Cart.find().sort({ createdAt: -1 }).limit(5);
-//     } else if (qCategory) {
-//       Carts = await Cart.find({
-//         categories: {
-//           $in: [qCategory],
-//         },
-//       });
-//     } else {
-//       Carts = await Cart.find();
-//     }
-
-//     return res.status(200).json(Carts);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+// // GET ALL
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    const carts = await Cart.find();
+    return res.status(200).json(carts);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
