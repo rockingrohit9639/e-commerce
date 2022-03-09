@@ -58,20 +58,31 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
-// // GET ALL USER
-// router.get("/", verifyTokenAndAdmin, async (req, res) => {
-//   const query = req.query.new;
+// GET ALL PRODUCTS
+router.get("/", async (req, res) => {
+  const qNew = req.query.new;
+  const qCategory = req.query.category;
 
-//   try {
-//     const users = query
-//       ? await User.find().sort({ _id: -1 }).limit(5)
-//       : await User.find();
-//     // const {password, ...others} = user._doc;
-//     res.status(200).json(users);
-//   } catch (err) {
-//     return res.status(500).json(err);
-//   }
-// });
+  try {
+    let products;
+
+    if (qNew) {
+      products = await Product.find().sort({ createdAt: -1 }).limit(5);
+    } else if (qCategory) {
+      products = await Product.find({
+        categories: {
+          $in: [qCategory],
+        },
+      });
+    } else {
+      products = await Product.find();
+    }
+
+    return res.status(200).json(products);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
 // // GET USER STATS
 // router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
