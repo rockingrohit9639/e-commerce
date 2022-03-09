@@ -8,44 +8,35 @@ const CryptoJS = require("crypto-js");
 
 const router = require("express").Router();
 
-// CREATE
-
+// CREATE PRODUCT
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
-    const newProduct = new Product(req.body);
+  const newProduct = new Product(req.body);
 
-    try {
-        const savedProduct = await newProduct.save();
-        return res.status(200).json(savedProduct);
-    }
-    catch(err){
-        return res.status(500).json(err);
-    }
-})
+  try {
+    const savedProduct = await newProduct.save();
+    return res.status(200).json(savedProduct);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
 
-// UPDATE
-// router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
-//   if (req.body.password) {
-//     req.body.password = CryptoJS.AES.encrypt(
-//       req.body.password,
-//       process.env.PASSWORD_SECRET_KEY.toString()
-//     );
-//   }
+// UPDATE PRODUCT
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
 
-//   try {
-//     const updatedUser = await User.findByIdAndUpdate(
-//       req.params.id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-
-//     return res.status(200).json(updatedUser);
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json(err);
-//   }
-// });
+    return res.status(200).json(updatedProduct);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
 
 // // DELETE
 // router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
