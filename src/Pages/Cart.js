@@ -252,7 +252,7 @@ function Cart() {
                         <RemoveIcon />
                       </ProductAmountContainer>
                       <ProductPrice>
-                        ₹ {item.price * item.quantity}
+                        $ {item.price * item.quantity}
                       </ProductPrice>
                     </PriceDetail>
                   </Product>
@@ -267,25 +267,25 @@ function Cart() {
               <SummaryTitle>ORDER SUMMARY</SummaryTitle>
               <SummaryItem>
                 <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
+                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Estimated Shipping</SummaryItemText>
-                <SummaryItemPrice>₹ 5.90</SummaryItemPrice>
+                <SummaryItemPrice>$ 5.90</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem>
                 <SummaryItemText>Shipping Discount</SummaryItemText>
-                <SummaryItemPrice>₹ -5.90</SummaryItemPrice>
+                <SummaryItemPrice>$ -5.90</SummaryItemPrice>
               </SummaryItem>
               <SummaryItem type="total">
                 <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>₹ {cart.total}</SummaryItemPrice>
+                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
               </SummaryItem>
               <StripeCheckout
                 name="R-SHOP"
                 billingAddress
                 shippingAddress
-                description={`Your total is ₹${cart.total}`}
+                description={`Your total is $${cart.total}`}
                 amount={cart.total * 100}
                 token={onToken}
                 stripeKey={KEY}
