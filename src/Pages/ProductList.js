@@ -51,7 +51,7 @@ function ProductList() {
 
     setFilters({ 
       ...filters,
-      [name]: value
+      [name]: value.toLowerCase()
     });
   }
 
@@ -87,7 +87,7 @@ function ProductList() {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select onChange={e => setSort(e.target.value)}>
+          <Select onChange={e => setSort(e.target.value.toLowerCase())}>
             <Option value={"newest"}>Newest</Option>
             <Option value={"asc"}>Price (asc)</Option>
             <Option value={"desc"}>Price (desc)</Option>
