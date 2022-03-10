@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Announcement from "../Components/Announcement";
 import Navbar from "../Components/Navbar";
@@ -7,6 +7,8 @@ import Footer from "../Components/Footer";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import { publicRequest } from "../axios/instance";
 
 const Container = styled.div``;
 
@@ -119,55 +121,77 @@ const Button = styled.button`
 `;
 
 function Product() {
+  const location = useLocation();
+  const productId = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+  const handleQuantity = (type) => {
+    if (type === "decrese") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get(`/products/find/${productId}`);
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getProduct();
+  }, [productId]);
+
+  const addToCart = () => {
+    
+  }
+
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImageContainer>
-          <Image
-            src={
-              "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png"
-            }
-          ></Image>
+          <Image src={product.img}></Image>
         </ImageContainer>
 
         <InfoContainer>
-          <Title>DENIM JUMPSUIT</Title>
-          <Description>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam
-            reprehenderit quibusdam ullam! Optio voluptatibus repellat
-            recusandae odio earum. Sint, ipsa?
-          </Description>
-          <Price>$20</Price>
+          <Title>{product.title}</Title>
+          <Description>{product.desc}</Description>
+          <Price>${product.price}</Price>
 
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="#000" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {product?.color?.map((c) => (
+                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+              ))}
             </Filter>
 
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FitlerSizeOption>XS</FitlerSizeOption>
-                <FitlerSizeOption>S</FitlerSizeOption>
-                <FitlerSizeOption>MD</FitlerSizeOption>
-                <FitlerSizeOption>L</FitlerSizeOption>
-                <FitlerSizeOption>XL</FitlerSizeOption>
+              <FilterSize onChange={e => setSize(e.target.value)}>
+                {product?.size?.map((s) => (
+                  <FitlerSizeOption>{s}</FitlerSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
 
           <AddContainer>
             <AmountContainer>
-              <RemoveIcon />
-              <Amount>1</Amount>
-              <AddIcon />
+              <RemoveIcon onClick={() => handleQuantity("decrese")} />
+              <Amount>{quantity}</Amount>
+              <AddIcon onClick={() => handleQuantity("increase")} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={addToCart}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

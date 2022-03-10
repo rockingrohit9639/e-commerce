@@ -1,7 +1,6 @@
-import server from "../axios/instance";
+import { publicRequest } from "../axios/instance";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
 
 const Container = styled.div`
@@ -12,14 +11,13 @@ const Container = styled.div`
 `;
 
 function Products({ category, filters, sort }) {
-  console.log(filters);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const res = await server.get(
+        const res = await publicRequest.get(
           category ? `/products?category=${category}` : "/products"
         );
         setProducts(res.data);
@@ -66,7 +64,7 @@ function Products({ category, filters, sort }) {
           ))
         : products
             .slice(0, 8)
-            .map((product) => <Product key={product.id} product={product} />)}
+            .map((product) => <Product key={product._id} product={product} />)}
     </Container>
   );
 }

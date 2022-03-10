@@ -59,7 +59,7 @@ function ProductList() {
     <Container>
       <Navbar />
       <Announcement />
-      <Title>Dresses</Title>
+      <Title>{ category.toUpperCase() }</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products: </FilterText>
