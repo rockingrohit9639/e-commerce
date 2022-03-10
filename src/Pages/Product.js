@@ -9,6 +9,8 @@ import AddIcon from "@mui/icons-material/Add";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { publicRequest } from "../axios/instance";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -128,6 +130,8 @@ function Product() {
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
 
+  const dispatch = useDispatch();
+
   const handleQuantity = (type) => {
     if (type === "decrese") {
       quantity > 1 && setQuantity(quantity - 1);
@@ -150,7 +154,7 @@ function Product() {
   }, [productId]);
 
   const addToCart = () => {
-    
+    dispatch(addProduct({ ...product, quantity, color, size }));
   }
 
   return (
