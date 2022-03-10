@@ -14,9 +14,11 @@ import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Success from "./Pages/Success";
+import { useSelector } from "react-redux";
+
 
 function App() {
-  const user = true;
+  const user = useSelector(state => state.user.currentUser);
   return (
     <Router>
       {/* <Navbar />

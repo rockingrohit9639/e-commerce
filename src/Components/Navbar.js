@@ -88,11 +88,17 @@ function Navbar() {
           </SearchContainer>
         </Left>
         <Center>
-          <Link to={"/"} style={{ textDecoration: "none", color: "#000" }}><Logo>R-SHOP</Logo></Link>
+          <Link to={"/"} style={{ textDecoration: "none", color: "#000" }}>
+            <Logo>R-SHOP</Logo>
+          </Link>
         </Center>
         <Right>
-          <MenuItem>register</MenuItem>
-          <MenuItem>sign in</MenuItem>
+          <Link to={"/register"} style={{ textDecoration: "none", color: "#000" }}>
+            <MenuItem>register</MenuItem>
+          </Link>
+          <Link to={"/login"} style={{ textDecoration: "none", color: "#000" }}>
+            <MenuItem>sign in</MenuItem>
+          </Link>
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">

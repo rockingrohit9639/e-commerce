@@ -5,14 +5,13 @@ import { userRequest } from "../axios/instance";
 
 const Success = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  console.log(location)
-  const data = location.state.stripeData;
-  const cart = location.state.cart;
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const [orderId, setOrderId] = useState(null);
+//   const location = useLocation();
+//   const data = location.state.stripeData;
+//   const cart = location.state.cart;
+//   const currentUser = useSelector((state) => state.user.currentUser);
+//   const [orderId, setOrderId] = useState(null);
 
-  useEffect(() => {
+//   useEffect(() => {
     // const createOrder = async () => {
     //   try {
     //     const res = await userRequest.post("/orders", {
@@ -28,7 +27,7 @@ const Success = () => {
     //   } catch {}
     // };
     // data && createOrder();
-  }, [cart, data, currentUser]);
+//   }, [cart, data, currentUser]);
 
   return (
     <div
