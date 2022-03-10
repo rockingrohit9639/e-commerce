@@ -64,7 +64,7 @@ function Products({ category, filters, sort }) {
           ))
         : products
             .slice(0, 8)
-            .map((product) => <Product key={product._id} product={product} />)}
+            .map((product, index) => <Product key={index} product={product} />)}
     </Container>
   );
 }

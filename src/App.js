@@ -13,6 +13,7 @@ import Product from "./Pages/Product";
 import Cart from "./Pages/Cart";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Success from "./Pages/Success";
 
 function App() {
   const user = true;
@@ -28,6 +29,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={user ? <Navigate to={"/"} /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to={"/"} /> : <Register />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
 
       <Footer />

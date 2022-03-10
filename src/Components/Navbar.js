@@ -74,7 +74,6 @@ const MenuItem = styled.div`
 
 function Navbar() {
   const quantity = useSelector((state) => state.cart.quantity);
-  console.log(quantity);
 
   return (
     <Container>
@@ -89,7 +88,7 @@ function Navbar() {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>R-SHOP</Logo>
+          <Link to={"/"} style={{ textDecoration: "none", color: "#000" }}><Logo>R-SHOP</Logo></Link>
         </Center>
         <Right>
           <MenuItem>register</MenuItem>

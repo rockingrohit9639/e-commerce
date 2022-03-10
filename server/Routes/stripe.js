@@ -1,21 +1,21 @@
 const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-router.post("/payment", (req, res) => {
-  stripe.charges.create(
-    {
-      source: req.body.tokenId,
+router.post("/payment", async (req, res) => {
+  console.log(req.body.tokenId);
+
+  try {
+    const charge = await stripe.charges.create({
       amount: req.body.amount,
       currency: "inr",
-    },
-    (stripeErr, stripeRes) => {
-      if (stripeErr) {
-        return res.status(500).json(stripeErr);
-      } else {
-        return res.status(200).json(stripeRes);
-      }
-    }
-  );
+      source: req.body.tokenId,
+    });
+
+    return res.json(charge);
+  } catch (err) {
+    console.log(err);
+    return res.send("NOT OK");
+  }
 });
 
 module.exports = router;
