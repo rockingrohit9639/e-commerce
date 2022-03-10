@@ -1,11 +1,13 @@
 const app = require("express")();
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 dotenv.config({ path: "./config.env"});
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 const PORT = process.env.PORT || 8001;
 

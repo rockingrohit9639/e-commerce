@@ -5,18 +5,16 @@ import Slider from "../Components/Slider";
 import Categories from "../Components/Categories";
 import Products from "../Components/Products";
 import Newsletter from "../Components/Newsletter";
-import Footer from "../Components/Footer";
 
 function Home() {
   return (
     <>
-      <Announcement />
       <Navbar />
+      <Announcement />
       <Slider />
       <Categories />
       <Products />
       <Newsletter />
-      <Footer />
     </>
   );
 }

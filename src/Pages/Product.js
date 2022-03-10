@@ -121,9 +121,8 @@ const Button = styled.button`
 function Product() {
   return (
     <Container>
-      <Announcement />
       <Navbar />
-
+      <Announcement />
       <Wrapper>
         <ImageContainer>
           <Image
